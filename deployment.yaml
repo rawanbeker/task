@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+spec:
+  selector:
+    matchLabels:
+      app: row
+  replicas: 3
+  template:
+    metadata:
+      name: raw
+      labels:
+        app: row
+    spec:
+      containers:
+        - image: rawanbaker/test
+         
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80   
+          name: nginx-container
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "1"
